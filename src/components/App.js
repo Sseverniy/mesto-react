@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <Header />
       <Main />
       <Footer />
+
+      
 
       <div className="popup popup_add-place">
         <div className="popup__container">
