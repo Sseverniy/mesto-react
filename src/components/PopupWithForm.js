@@ -14,8 +14,8 @@ function PopupWithForm(props) {
         <form
           className="popup__form"
           name={props.name}
-          autocomplete="off"
-          novalidate
+          autoComplete="off"
+          noValidate
         >
           {props.children}
         </form>

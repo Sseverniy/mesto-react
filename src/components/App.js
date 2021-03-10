@@ -45,11 +45,11 @@ function App() {
         onClose= {closeAllPopups}
         children = {(<>
           <label className="label">
-            <input type="text" id="profile-name" className="popup__input popup__input_profile_name" name="name" placeholder="Имя пользователя" required minlength="2" maxlength="40" />
+            <input type="text" id="profile-name" className="popup__input popup__input_profile_name" name="name" placeholder="Имя пользователя" required minLength="2" maxLength="40" />
             <span id="profile-name-error" className="error"></span>
           </label>
           <label className="label">
-            <input type="text" id="profile-info" className="popup__input popup__input_profile_info" name="about" placeholder="О себе" required minlength="2" maxlength="200" />
+            <input type="text" id="profile-info" className="popup__input popup__input_profile_info" name="about" placeholder="О себе" required minLength="2" maxLength="200" />
             <span id="profile-info-error" className="error"></span>
           </label>
           <button type="submit" className="popup__save-button">Сохранить</button>
@@ -63,10 +63,10 @@ function App() {
         onClose= {closeAllPopups}
         children = {(<>
           <label className="label">
-            <input type="text" id="picture-name" className="popup__input popup__input_picture_name" name="name" placeholder="Название" minlength="2" maxlength="30" required />
+            <input type="text" id="picture-name" className="popup__input popup__input_picture_name" name="name" placeholder="Название" minLength="2" maxLength="30" required />
             <span id="picture-name-error" className="error"></span>
           </label>
-          <label class="label">
+          <label className="label">
             <input type="url" id="picture-link" className="popup__input popup__input_picture_link" name="link" placeholder="Ссылка на картинку" required />
             <span id="picture-link-error" className="error"></span>
           </label>
@@ -109,29 +109,6 @@ function App() {
         </div>
       </div>
 
-  
-
-      <template className="template">
-        <article className="card">
-          <button
-            type="button"
-            className="card__delete button"
-            aria-label="Удалить карточку"
-          />
-          <img className="card__pic" src=" " alt=" " id="card-image" />
-          <div className="card__wrapper">
-            <h2 className="card__place-name" />
-            <div>
-              <button
-                type="button"
-                className="card__like button"
-                aria-label="Поставить лайк"
-              />
-              <p className="card__like-counter">0</p>
-            </div>
-          </div>
-        </article>
-      </template>
     </div>
   );
 }
