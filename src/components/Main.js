@@ -22,9 +22,7 @@ function Main(props) {
           id: card._id,
           likes: card.likes
         }
-        )))
-        
-      
+        )))      
       })
       .catch((err) => {console.log(err)});
   },[]);
@@ -45,7 +43,7 @@ function Main(props) {
       </section>
 
       <section className="cards">
-        { cards.map((card)=> (<Card card={card} key={card.id}/>))}
+        { cards.map((card)=> (<Card card={card} key={card.id} onCardClick={props.onCardClick}/>))}
       </section>
     </main>
     )
