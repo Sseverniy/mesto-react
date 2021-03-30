@@ -3,6 +3,7 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
+import EditProfilePopup from "./EditProfilePopup.js";
 import ImagePopup from "./ImagePopup.js";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import api from "../utils/api";
@@ -27,6 +28,14 @@ function App() {
   }
   function handleCardClick(card) {
     setSelectedCard(card);
+  }
+  function handleUpdateUser(userData) {
+    api.updateProfileInfo(userData)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch((err)=> console.log(err));
   }
 
   function closeAllPopups() {
@@ -72,19 +81,7 @@ function App() {
           card={selectedCard}
           onClose={closeAllPopups}
         />
-        <PopupWithForm title="Редактировать профиль" name = "popup_edit-profile" isOpen = {isEditProfilePopupOpen} onClose= {closeAllPopups}>
-          <>
-            <label className="label">
-              <input type="text" id="profile-name" className="popup__input popup__input_profile_name" name="name" placeholder="Имя пользователя" required minLength="2" maxLength="40" />
-              <span id="profile-name-error" className="error"></span>
-            </label>
-            <label className="label">
-              <input type="text" id="profile-info" className="popup__input popup__input_profile_info" name="about" placeholder="О себе" required minLength="2" maxLength="200" />
-              <span id="profile-info-error" className="error"></span>
-            </label>
-            <button type="submit" className="popup__save-button">Сохранить</button>
-          </>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
         <PopupWithForm title="Новое место" name = "popup_add-place" isOpen = {isAddPlacePopupOpen} onClose= {closeAllPopups}>
           <>
             <label className="label">
