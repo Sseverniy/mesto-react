@@ -4,12 +4,16 @@ import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
 import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
 import ImagePopup from "./ImagePopup.js";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import api from "../utils/api";
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState('');
+  const [currentUser, setCurrentUser] = React.useState({
+    name: '',
+    about: '',
+  });
   // const [cards, setCards] = React.useState([]);
 
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
@@ -31,11 +35,18 @@ function App() {
   }
   function handleUpdateUser(userData) {
     api.updateProfileInfo(userData)
-      .then((data) => {
-        setCurrentUser(data);
+      .then((updatedUserData) => {
+        setCurrentUser(updatedUserData);
         closeAllPopups();
       })
       .catch((err)=> console.log(err));
+  }
+  function handleUpdateAvatar(newData) {
+    api.updateAvatar(newData)
+      .then((updatedUserAvatar) => {
+        setCurrentUser(updatedUserAvatar);
+        closeAllPopups();
+      })
   }
 
   function closeAllPopups() {
@@ -95,15 +106,7 @@ function App() {
             <button type="submit" className="popup__save-button">Сохранить</button>
           </>
         </PopupWithForm>
-        <PopupWithForm title="Обновить аватар" name = "popup_avatar" isOpen = {isEditAvatarPopupOpen} onClose= {closeAllPopups}>
-          <>
-            <label className="label">
-              <input type="url" id="avatar" className="popup__input popup__input_avatar_name" name="avatar" placeholder="Ссылка на картинку" required />
-              <span id="avatar-error" className="error"></span>
-            </label>
-            <button type="submit" className="popup__save-button popup__save-button_avatar">Сохранить</button>
-          </>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
         <PopupWithForm title="Вы уверены?" name="popup_delete">
           <>
             <button type="button" className="popup__save-button popup__save-button_delete">Да</button>
