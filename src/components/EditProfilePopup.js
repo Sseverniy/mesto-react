@@ -32,21 +32,52 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     setDescription(currentUser.about);
   }, [currentUser]); 
 
-  return(
-    <PopupWithForm title="Редактировать профиль" name="popup_edit-profile" isOpen={isOpen} onClose={onClose}>
-      <>
-        <label className="label">
-          <input type="text" onChange={handleNameChange} value={name} id="profile-name" className="popup__input popup__input_profile_name" name="name" placeholder="Имя пользователя" required minLength="2" maxLength="40" />
-          <span id="profile-name-error" className="error"></span>
-        </label>
-        <label className="label">
-          <input type="text" onChange={handleDescriptionChange} value={description} id="profile-info" className="popup__input popup__input_profile_info" name="about" placeholder="О себе" required minLength="2" maxLength="200" />
-          <span id="profile-info-error" className="error"></span>
-        </label>
-        <button type="submit" className="popup__save-button" onClick={handleSubmit}>Сохранить</button>
-      </>
+  return (
+    <PopupWithForm
+      title="Редактировать профиль"
+      name="popup_edit-profile"
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <label className="label">
+        <input
+          type="text"
+          onChange={handleNameChange}
+          value={name}
+          id="profile-name"
+          className="popup__input popup__input_profile_name"
+          name="name"
+          placeholder="Имя пользователя"
+          required
+          minLength="2"
+          maxLength="40"
+        />
+        <span id="profile-name-error" className="error"></span>
+      </label>
+      <label className="label">
+        <input
+          type="text"
+          onChange={handleDescriptionChange}
+          value={description}
+          id="profile-info"
+          className="popup__input popup__input_profile_info"
+          name="about"
+          placeholder="О себе"
+          required
+          minLength="2"
+          maxLength="200"
+        />
+        <span id="profile-info-error" className="error"></span>
+      </label>
+      <button
+        type="submit"
+        className="popup__save-button"
+        onClick={handleSubmit}
+      >
+        Сохранить
+      </button>
     </PopupWithForm>
-  )
+  );
 }
 
 export default EditProfilePopup;
